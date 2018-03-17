@@ -78,7 +78,8 @@ public class ServletLogin extends HttpServlet {
 			
 			//verificar se usuario e senha estao corretos
 			if (rs.first()) {
-				out.println("<h1>Login com sucesso!</h1>");
+				out.println("<h1>Bem Vindo! </h1>");
+				out.println("<h2><a href=\"produtos\"> Listar Produtos</a> </h2>");
 			} else {
 				out.println("<h1>Login sem sucesso</h1>");
 			}
