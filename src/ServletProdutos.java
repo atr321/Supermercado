@@ -48,7 +48,7 @@ public class ServletProdutos extends HttpServlet {
 						out.println("<html><head><title>Listar Produtos</title></head>");
 						out.println("<body>");
 				
-						ArrayList<String> produtos = new ArrayList<String>();
+						//ArrayList<String> produtos = new ArrayList<String>();
 						
 				try {
 					//referenciar o driver JDBC
@@ -82,11 +82,13 @@ public class ServletProdutos extends HttpServlet {
 					//verificar se usuario e senha estao corretos
 					while (rs.next()) {
 						String nomeProduto = rs.getString("nomeproduto");
-						String descProduto = rs.getString("descricaoproduto");
-						String fabriProduto = rs.getString("fabricanteproduto");
-						String precoProduto = rs.getString("precoproduto");
+						//String descProduto = rs.getString("descricaoproduto");
+						//String fabriProduto = rs.getString("fabricanteproduto");
+						//String precoProduto = rs.getString("precoproduto");
+						int idProduto = rs.getInt("idproduto");
 						
-						out.println(nomeProduto + descProduto);
+						
+						out.print(idProduto + ". " + "<a href=\"detalheProduto?id="+ idProduto +"\">" + nomeProduto + "</a> " + " " + "<br/>");
 						//produtos.add(nomeProduto + "#" + descProduto + "#" + fabriProduto + "#" + precoProduto);
 						}
 					
