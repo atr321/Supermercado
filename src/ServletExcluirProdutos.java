@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,16 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ServletProdutos
+ * Servlet implementation class ServletExcluirProdutos
  */
-@WebServlet("/produtos")
-public class ServletProdutos extends HttpServlet {
+@WebServlet("/excluirProduto")
+public class ServletExcluirProdutos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletProdutos() {
+    public ServletExcluirProdutos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,10 +34,9 @@ public class ServletProdutos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		//recuperar parametros
-				
-				
+				String id = request.getParameter("id");
+				String nome = request.getParameter("nome");
 				//obter objeto de resposta
 				PrintWriter out = response.getWriter();
 				
@@ -67,30 +65,25 @@ public class ServletProdutos extends HttpServlet {
 					//"where nomeusuario = '" + usuario + "' and senhausuario = '" + senha + "'";
 					
 					//Criando SQL - Jeito MELHOR
-					String sql = "select * from produto";
+					//String sql = "select * from produto";
+					String sql = "delete from produto where idproduto=" + id;
 					
 					//preparar o SQL para envio ao DB
 					PreparedStatement ps = conexao.prepareStatement(sql);
 					//passar o valor de usuario
-					
+					//ps.setString(1, id);
 					//passar o valor de senha
 					
 					
 					//Executando SQL
-					ResultSet rs = ps.executeQuery();
+					ps.executeUpdate(sql);
 					
+					out.print("<h1>Produto " + nome + " foi excluido com sucesso </h1>");
 					//verificar se usuario e senha estao corretos
-					while (rs.next()) {
-						String nomeProduto = rs.getString("nomeproduto");
-						//String descProduto = rs.getString("descricaoproduto");
-						//String fabriProduto = rs.getString("fabricanteproduto");
-						//String precoProduto = rs.getString("precoproduto");
-						int idProduto = rs.getInt("idproduto");
+					
 						
-						
-						out.print(idProduto + ". " + "<a href=\"detalheProduto?id="+ idProduto +"\">" + nomeProduto + "</a> " + " " + "<a href=\"excluirProduto?id=" + idProduto + "&nome="+nomeProduto+"\"> Excluir</a> " + "<br/>");
 						//produtos.add(nomeProduto + "#" + descProduto + "#" + fabriProduto + "#" + precoProduto);
-						}
+						
 					
 					//for (String produto : produtos) {
 						//String parameters[] = produto.split("#");
@@ -99,7 +92,7 @@ public class ServletProdutos extends HttpServlet {
 					//}
 					
 					//fechar ResultSet
-					rs.close();
+					
 					//fechar o PrepareStatment
 					ps.close();
 					//fechar o Connection
@@ -112,7 +105,6 @@ public class ServletProdutos extends HttpServlet {
 				
 				//fechar o HTML
 				out.println("</body></html>");
-			}
 	}
 
-
+}
