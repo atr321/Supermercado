@@ -38,7 +38,6 @@ public class ServletProdutos extends HttpServlet {
 		
 		//recuperar parametros
 				
-				
 				//obter objeto de resposta
 				PrintWriter out = response.getWriter();
 				
@@ -89,8 +88,11 @@ public class ServletProdutos extends HttpServlet {
 						
 						
 						out.print(idProduto + ". " + "<a href=\"detalheProduto?id="+ idProduto +"\">" + nomeProduto + "</a> " + " " + "<a href=\"excluirProduto?id=" + idProduto + "&nome="+nomeProduto+"\"> Excluir</a> " + "<br/>");
+						
+						//out.print("");
 						//produtos.add(nomeProduto + "#" + descProduto + "#" + fabriProduto + "#" + precoProduto);
 						}
+					out.print("<a href=\"incluir_produto.html\">Incluir Produto</a> ");
 					
 					//for (String produto : produtos) {
 						//String parameters[] = produto.split("#");
